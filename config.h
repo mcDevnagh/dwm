@@ -73,6 +73,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_b,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_b,            ,               }, /*  */
   /*{ MODKEY,           XK_c,            ,               }, /*  */
+  /*{ MODKEY,           XK_c,            spawn,          SHCMD("xsel | xclip -sel c") }, /* Copy (put selection into clipboard) */
   /*{ MODKEY|ShiftMask, XK_c,            ,               }, /*  */
     { MODKEY,           XK_d,            spawn,          {.v = dmenucmd } }, /* access dmenu */
   /*{ MODKEY|ShiftMask, XK_d,            ,               }, /*  */
@@ -111,6 +112,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_u,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_u,            ,               }, /*  */
   /*{ MODKEY,           XK_v,            ,               }, /*  */
+  /*{ MODKEY,           XK_v,            spawn,          SHCMD("xdotool type --clearmodifiers --delay 0 \"$(xclip -sel c -o)\"")}, /*  */
   /*{ MODKEY|ShiftMask, XK_v,            ,               }, /*  */
     { MODKEY,           XK_w,            spawn,          SHCMD("$BROWSER") }, /* start browser defined in environment */
     { MODKEY|ShiftMask, XK_w,            spawn,          SHCMD(TERMINAL " -e sudo nmtui") }, /* start network manager */
