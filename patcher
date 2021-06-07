@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for file
+do
+    name=$(echo "$file" | sed "s!.*/!!g" )
+    (git apply $file && git add . && git commit -m "applied $name") || (git apply $file -3; exit)
+done
