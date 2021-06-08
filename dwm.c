@@ -705,7 +705,7 @@ createmon(void)
 			m->pertag->gappx[i] = gappx[(i - 1) % LENGTH(gappx)];
 		}
 	}
-	m->pertag->drawwithgaps[0] = startwithgaps[0]; 
+	m->pertag->drawwithgaps[0] = startwithgaps[0];
 	m->pertag->gappx[0] = gappx[0];
 
 	return m;
@@ -2403,3 +2403,4 @@ main(int argc, char *argv[])
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
 }
+
