@@ -69,7 +69,7 @@ static Key keys[] = {
     { MODKEY,           XK_Return,       spawn,          {.v = termcmd } }, /* spawn terminal */
     { MODKEY|ShiftMask, XK_Return,       spawn,          {.v = termcmd } }, /* toggle scratchpad */
 	{ MODKEY,			XK_space,        zoom,           {0} }, /* switch master */
-    { MODKEY|ShiftMask, XK_space,        togglefloating, {0} }, /* make target window floating */
+    { MODKEY|ShiftMask, XK_space,        togglefloating, {0} }, /* make target client floating */
   /*{ MODKEY,           XK_a,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_a,            ,               }, /*  */
   /*{ MODKEY,           XK_b,            ,               }, /*  */
@@ -81,19 +81,19 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_d,            ,               }, /*  */
   /*{ MODKEY,           XK_e,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_e,            ,               }, /*  */
-    { MODKEY,           XK_f,            togglefullscr,  {0} }, /* toggle  actual fullscreen of targeted window */
+    { MODKEY,           XK_f,            togglefullscr,  {0} }, /* toggle  actual fullscreen of targeted client */
     { MODKEY|ShiftMask, XK_f,            setlayout,      {.v = &layouts[1]} }, /* floating layout (aka normie mode) */
   /*{ MODKEY,           XK_g,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_g,            ,               }, /*  */
-    { MODKEY,           XK_h,            setmfact,       {.f = -0.05} }, /* increase width of master window */
+    { MODKEY,           XK_h,            setmfact,       {.f = -0.05} }, /* increase width of master client */
   /*{ MODKEY|ShiftMask, XK_h,            ,               }, /*  */
     { MODKEY,           XK_i,            incnmaster,     {.i = +1 } }, /* increase the number of masters */
     { MODKEY|ShiftMask, XK_i,            incnmaster,     {.i = -1 } }, /* decrease the number of masters */
-    { MODKEY,           XK_j,            focusstack,     {.i = +1 } }, /* cycle to next window */
-  /*{ MODKEY|ShiftMask, XK_j,            ,               }, /*  */
-    { MODKEY,           XK_k,            focusstack,     {.i = -1 } }, /* cycle to previous window  */
-  /*{ MODKEY|ShiftMask, XK_k,            ,               }, /*  */
-    { MODKEY,           XK_l,            setmfact,       {.f = +0.05} }, /* decrease width of master window */
+    { MODKEY,           XK_j,            focusstack,     {.i = +1 } }, /* cycle to next client */
+    { MODKEY|ShiftMask, XK_j,            pushdown,       {0} }, /* push current client down the stack */
+    { MODKEY,           XK_k,            focusstack,     {.i = -1 } }, /* cycle to previous client  */
+    { MODKEY|ShiftMask, XK_k,            pushup,         {0} }, /* push current client up the stack */
+    { MODKEY,           XK_l,            setmfact,       {.f = +0.05} }, /* decrease width of master client */
   /*{ MODKEY|ShiftMask, XK_l,            ,               }, /*  */
   /*{ MODKEY,           XK_m,            ,               }, /*  */
     { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[2]} }, /* monocle layout */
@@ -103,7 +103,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_o,            ,               }, /*  */
   /*{ MODKEY,           XK_p,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_p,            ,               }, /*  */
-    { MODKEY,           XK_q,            killclient,     {0} }, /* close current window */
+    { MODKEY,           XK_q,            killclient,     {0} }, /* close current client */
     { MODKEY|ShiftMask, XK_q,            quit,           {0} }, /* quit DWM */
   /*{ MODKEY,           XK_r,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_r,            ,               }, /*  */
