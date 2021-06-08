@@ -109,7 +109,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_q,            quit,           {0} }, /* quit DWM */
   /*{ MODKEY,           XK_r,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_r,            ,               }, /*  */
-  /*{ MODKEY,           XK_s,            ,               }, /*  */
+    { MODKEY,           XK_s,            togglesticky,   {0} }, /* toggle sticky (sticky means client is on all tags) */
   /*{ MODKEY|ShiftMask, XK_s,            ,               }, /*  */
     { MODKEY,           XK_t,            setlayout,      {.v = &layouts[0]} }, /* tile layout */
   /*{ MODKEY|ShiftMask, XK_t,            ,               }, /*  */

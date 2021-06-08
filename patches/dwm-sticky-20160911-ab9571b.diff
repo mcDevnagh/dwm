@@ -1,8 +1,8 @@
 diff --git a/config.def.h b/config.def.h
-index 7054c06..9b5d5b8 100644
+index fd77a07..9b743a5 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -76,6 +76,7 @@ static Key keys[] = {
+@@ -78,6 +78,7 @@ static Key keys[] = {
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -11,7 +11,7 @@ index 7054c06..9b5d5b8 100644
  	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
  	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 diff --git a/dwm.c b/dwm.c
-index 0362114..0ef5c7f 100644
+index 421bf27..602338a 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -49,7 +49,7 @@
@@ -23,7 +23,7 @@ index 0362114..0ef5c7f 100644
  #define LENGTH(X)               (sizeof X / sizeof X[0])
  #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
  #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
-@@ -92,7 +92,7 @@ struct Client {
+@@ -93,7 +93,7 @@ struct Client {
  	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
  	int bw, oldbw;
  	unsigned int tags;
@@ -32,7 +32,7 @@ index 0362114..0ef5c7f 100644
  	Client *next;
  	Client *snext;
  	Monitor *mon;
-@@ -211,6 +211,7 @@ static void tagmon(const Arg *arg);
+@@ -212,6 +212,7 @@ static void tagmon(const Arg *arg);
  static void tile(Monitor *);
  static void togglebar(const Arg *arg);
  static void togglefloating(const Arg *arg);
@@ -40,7 +40,7 @@ index 0362114..0ef5c7f 100644
  static void toggletag(const Arg *arg);
  static void toggleview(const Arg *arg);
  static void unfocus(Client *c, int setfocus);
-@@ -1713,6 +1714,15 @@ togglefloating(const Arg *arg)
+@@ -1712,6 +1713,15 @@ togglefloating(const Arg *arg)
  }
  
  void
