@@ -133,7 +133,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_grave,        ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_grave,        ,               }, /*  */
     { MODKEY,           XK_Tab,          view,           {0} }, /* go to last tag */
-    { MODKEY|ShiftMask, XK_Tab,          view,           {0} }, /* go to last tag */
+    { MODKEY|ShiftMask, XK_Tab,          swapfocus,      {0} }, /* go to last client */
   /*{ MODKEY,           XK_Escape,       ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_Escape,       ,               }, /*  */
   /*{ MODKEY,           XK_F1,           ,               }, /*  */
