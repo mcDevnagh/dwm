@@ -67,15 +67,13 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 #define TERMINAL "st"
 static const char *termcmd[]  = { TERMINAL, NULL };
-static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 #include <X11/XF86keysym.h>
 
 static Key keys[] = {
     /* modifier         key              function          argument */
     { MODKEY,           XK_Return,       spawn,          {.v = termcmd } }, /* spawn terminal */
-    { MODKEY|ShiftMask, XK_Return,       togglescratch,  {.v = scratchpadcmd } }, /* toggle scratchpad */
+    { MODKEY|ShiftMask, XK_Return,       spawn,          {.v = termcmd } }, /* toggle scratchpad */
 	{ MODKEY,			XK_space,        zoom,           {0} }, /* switch master */
     { MODKEY|ShiftMask, XK_space,        togglefloating, {0} }, /* make target client floating */
   /*{ MODKEY,           XK_a,            ,               }, /*  */
