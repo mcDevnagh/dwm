@@ -23,6 +23,20 @@ static const char *colors[][3]      = {
     [SchemeSel]  = { col_gray4, col_blue,  col_mint  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {TERMINAL, "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "spmusic", "-g", "144x41", "-e", "ncmpcpp", NULL };
+static Sp scratchpads[] = {
+	/* name    cmd  */
+    {"spterm", spcmd1},
+    {"spfm",   spcmd2},
+    {"spmusic", spcmd3},
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -31,12 +45,15 @@ static const Rule rules[] = {
      *    WM_CLASS(STRING) = instance, class
      *    WM_NAME(STRING) = title
      */
-	/* class            instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",           NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",        NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "LibreWolf",      NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "st-256color",    NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,             NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class            instance   title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",           NULL,      NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",        NULL,      NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "LibreWolf",      NULL,      NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st-256color",    NULL,      NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,             NULL,      "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,		        "spterm",  NULL,		   SPTAG(0),  1,	      1,           0,        -1 },
+	{ NULL,		        "spfm",	   NULL,		   SPTAG(1),  1,	      1,           0,        -1 },
+	{ NULL,		        "spmusic", NULL,		   SPTAG(2),  1,	      1,           1,        -1 },
 };
 
 /* layout(s) */
@@ -73,13 +90,13 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 static Key keys[] = {
     /* modifier         key              function          argument */
     { MODKEY,           XK_Return,       spawn,          {.v = termcmd } }, /* spawn terminal */
-    { MODKEY|ShiftMask, XK_Return,       spawn,          {.v = termcmd } }, /* toggle scratchpad */
+    { MODKEY|ShiftMask, XK_Return,       togglescratch,  {.ui = 0} }, /* toggle scratchpad */
 	{ MODKEY,			XK_space,        zoom,           {0} }, /* switch master */
     { MODKEY|ShiftMask, XK_space,        togglefloating, {0} }, /* make target client floating */
   /*{ MODKEY,           XK_a,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_a,            ,               }, /*  */
-  /*{ MODKEY,           XK_b,            ,               }, /*  */
-  /*{ MODKEY|ShiftMask, XK_b,            ,               }, /*  */
+    { MODKEY,           XK_b,            spawn,          SHCMD(TERMINAL " -e lf") }, /* file Browser lf */
+    { MODKEY|ShiftMask, XK_b,            togglescratch,  {.ui = 1} }, /* file Browser lf in a scratchpad */
   /*{ MODKEY,           XK_c,            ,               }, /*  */
   /*{ MODKEY,           XK_c,            spawn,          SHCMD("xsel | xclip -sel c") }, /* Copy (put selection into clipboard) */
   /*{ MODKEY|ShiftMask, XK_c,            ,               }, /*  */
@@ -101,7 +118,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_k,            pushup,         {0} }, /* push current client up the stack */
     { MODKEY,           XK_l,            setmfact,       {.f = +0.05} }, /* decrease width of master client */
   /*{ MODKEY|ShiftMask, XK_l,            ,               }, /*  */
-  /*{ MODKEY,           XK_m,            ,               }, /*  */
+    { MODKEY,           XK_m,            togglescratch,  {.ui = 2} }, /*  */
     { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[2]} }, /* monocle layout */
   /*{ MODKEY,           XK_n,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_n,            ,               }, /*  */
