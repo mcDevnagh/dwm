@@ -23,6 +23,12 @@ static const char *colors[][3]      = {
     [SchemeSel]  = { col_gray4, col_blue,  col_mint  },
 };
 
+/* commands */
+#define TERMINAL "st"
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
+
 typedef struct {
 	const char *name;
 	const void *cmd;
@@ -79,12 +85,6 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-#define TERMINAL "st"
-static const char *termcmd[]  = { TERMINAL, NULL };
-
 #include <X11/XF86keysym.h>
 
 static Key keys[] = {
@@ -120,7 +120,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_l,            ,               }, /*  */
     { MODKEY,           XK_m,            togglescratch,  {.ui = 2} }, /*  */
     { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[2]} }, /* monocle layout */
-  /*{ MODKEY,           XK_n,            ,               }, /*  */
+    { MODKEY,           XK_n,            spawn,          SHCMD(TERMINAL " -e newsboat") }, /* start my RSS reader */
   /*{ MODKEY|ShiftMask, XK_n,            ,               }, /*  */
   /*{ MODKEY,           XK_o,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_o,            ,               }, /*  */
@@ -157,8 +157,8 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_F1,           ,               }, /*  */
   /*{ MODKEY,           XK_F2,           ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_F2,           ,               }, /*  */
-  /*{ MODKEY,           XK_F3,           ,               }, /*  */
-    { MODKEY|ShiftMask, XK_F3,           spawn,          SHCMD(TERMINAL " -e htop") }, /* start htop */
+    { MODKEY,           XK_F3,           spawn,          SHCMD(TERMINAL " -e htop") }, /* start htop */
+  /*{ MODKEY|ShiftMask, XK_F3,           ,               }, /*  */
   /*{ MODKEY,           XK_F4,           ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_F4,           ,               }, /*  */
   /*{ MODKEY,           XK_F5,           ,               }, /*  */
