@@ -110,8 +110,8 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_g,            ,               }, /*  */
     { MODKEY,           XK_h,            setmfact,       {.f = -0.05} }, /* increase width of master client */
   /*{ MODKEY|ShiftMask, XK_h,            ,               }, /*  */
-    { MODKEY,           XK_i,            incnmaster,     {.i = +1 } }, /* increase the number of masters */
-    { MODKEY|ShiftMask, XK_i,            incnmaster,     {.i = -1 } }, /* decrease the number of masters */
+    { MODKEY,           XK_i,            incnmaster,     {.i = -1 } }, /* decrease the number of masters */
+    { MODKEY|ShiftMask, XK_i,            incnmaster,     {.i = +1 } }, /* increase the number of masters */
     { MODKEY,           XK_j,            focusstack,     {.i = +1 } }, /* cycle to next client */
     { MODKEY|ShiftMask, XK_j,            pushdown,       {0} }, /* push current client down the stack */
     { MODKEY,           XK_k,            focusstack,     {.i = -1 } }, /* cycle to previous client  */
