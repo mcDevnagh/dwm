@@ -69,9 +69,9 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[]=",      tile },    /* first entry is default */
+    { "[M]",      monocle },    /* first entry is default */
+    { "[]=",      tile },
     { "><>",      NULL },    /* no layout function means floating behavior */
-    { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -106,7 +106,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_e,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_e,            ,               }, /*  */
     { MODKEY,           XK_f,            togglefullscr,  {0} }, /* toggle actual fullscreen of targeted client */
-    { MODKEY|ShiftMask, XK_f,            setlayout,      {.v = &layouts[1]} }, /* floating layout (aka normie mode) */
+    { MODKEY|ShiftMask, XK_f,            setlayout,      {.v = &layouts[2]} }, /* floating layout (aka normie mode) */
   /*{ MODKEY,           XK_g,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_g,            ,               }, /*  */
     { MODKEY,           XK_h,            shiftview,      {.i = -1} }, /* change to the tag to the left */
@@ -120,7 +120,7 @@ static Key keys[] = {
     { MODKEY,           XK_l,            shiftview,      {.i = +1} }, /* change to the tag to the right */
     { MODKEY|ShiftMask, XK_l,            shifttag,       {.i = +1} }, /* move the selected client one tag to the right */
     { MODKEY,           XK_m,            togglescratch,  {.ui = 2} }, /*  */
-    { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[2]} }, /* monocle layout */
+    { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[0]} }, /* monocle layout */
     { MODKEY,           XK_n,            spawn,          SHCMD(TERMINAL " -e newsboat") }, /* start my RSS reader */
   /*{ MODKEY|ShiftMask, XK_n,            ,               }, /*  */
   /*{ MODKEY,           XK_o,            ,               }, /*  */
@@ -133,7 +133,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_r,            ,               }, /*  */
     { MODKEY,           XK_s,            togglesticky,   {0} }, /* toggle sticky (sticky means client is on all tags) */
   /*{ MODKEY|ShiftMask, XK_s,            ,               }, /*  */
-    { MODKEY,           XK_t,            setlayout,      {.v = &layouts[0]} }, /* tile layout */
+    { MODKEY,           XK_t,            setlayout,      {.v = &layouts[1]} }, /* tile layout */
   /*{ MODKEY|ShiftMask, XK_t,            ,               }, /*  */
   /*{ MODKEY,           XK_u,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_u,            ,               }, /*  */
