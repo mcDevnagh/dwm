@@ -35,12 +35,10 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
-const char *spcmd3[] = {TERMINAL, "-n", "spmusic", "-g", "144x41", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
 	/* name    cmd  */
     {"spterm", spcmd1},
     {"spfm",   spcmd2},
-    {"spmusic", spcmd3},
 };
 
 /* tagging */
@@ -59,7 +57,6 @@ static const Rule rules[] = {
 	{ NULL,             NULL,      "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ NULL,		        "spterm",  NULL,		   SPTAG(0),  1,	      1,           0,        -1 },
 	{ NULL,		        "spfm",	   NULL,		   SPTAG(1),  1,	      1,           0,        -1 },
-	{ NULL,		        "spmusic", NULL,		   SPTAG(2),  1,	      1,           1,        -1 },
 };
 
 /* layout(s) */
@@ -119,7 +116,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_k,            pushup,         {0} }, /* push current client up the stack */
     { MODKEY,           XK_l,            shiftview,      {.i = +1} }, /* change to the tag to the right */
     { MODKEY|ShiftMask, XK_l,            shifttag,       {.i = +1} }, /* move the selected client one tag to the right */
-    { MODKEY,           XK_m,            togglescratch,  {.ui = 2} }, /*  */
+  /*{ MODKEY,           XK_m,            togglescratch,  {.ui = 2} }, /*  */
     { MODKEY|ShiftMask, XK_m,            setlayout,      {.v = &layouts[2]} }, /* monocle layout */
     { MODKEY,           XK_n,            spawn,          SHCMD(TERMINAL " -e newsboat") }, /* start my RSS reader */
   /*{ MODKEY|ShiftMask, XK_n,            ,               }, /*  */
