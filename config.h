@@ -126,7 +126,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_p,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_p,            ,               }, /*  */
     { MODKEY,           XK_q,            killclient,     {0} }, /* close current client */
-    { MODKEY|ShiftMask, XK_q,            spawn,          SHCMD("powermenu") }, /* power menu throw dmenu */
+    { MODKEY|ShiftMask, XK_q,            spawn,          SHCMD("powermenu") }, /* power menu through dmenu */
   /*{ MODKEY,           XK_r,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_r,            ,               }, /*  */
     { MODKEY,           XK_s,            togglesticky,   {0} }, /* toggle sticky (sticky means client is on all tags) */
