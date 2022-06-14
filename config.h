@@ -67,9 +67,10 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[]=",      tile },    /* first entry is default */
-    { "><>",      NULL },    /* no layout function means floating behavior */
-    { "[M]",      monocle },
+    { "[]=",      tile },    		/* tiling with a master and slaves */
+    { "><>",      NULL },    		/* no layout function means floating behavior */
+    { "[M]",      monocle }, 		/* everything stacked on top of eachother on the Z axis */
+    { "===",      bstackhoriz },    /* tiling with stacked on the Y axis */	
 };
 
 /* key definitions */
@@ -95,7 +96,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_a,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_a,            ,               }, /*  */
     { MODKEY,           XK_b,            spawn,          SHCMD(TERMINAL " -e lf") }, /* file Browser lf */
-    { MODKEY|ShiftMask, XK_b,            togglescratch,  {.ui = 1} }, /* file Browser lf in a scratchpad */
+    { MODKEY|ShiftMask, XK_b,            setlayout,      {.v = &layouts[3]} }, /* vertical stack */
   /*{ MODKEY,           XK_c,            ,               }, /*  */
   /*{ MODKEY,           XK_c,            spawn,          SHCMD("xsel | xclip -sel c") }, /* Copy (put selection into clipboard) */
   /*{ MODKEY|ShiftMask, XK_c,            ,               }, /*  */
