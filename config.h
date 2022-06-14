@@ -125,7 +125,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_p,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_p,            ,               }, /*  */
     { MODKEY,           XK_q,            killclient,     {0} }, /* close current client */
-    { MODKEY|ShiftMask, XK_q,            quit,           {0} }, /* quit DWM */
+    { MODKEY|ShiftMask, XK_q,            spawn,          SHCMD("powermenu") }, /* power menu throw dmenu */
   /*{ MODKEY,           XK_r,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_r,            ,               }, /*  */
     { MODKEY,           XK_s,            togglesticky,   {0} }, /* toggle sticky (sticky means client is on all tags) */
@@ -236,7 +236,7 @@ static Key keys[] = {
   /*{ 0, XF86XK_AudioForward,       ,       }, /*  */
   /*{ 0, XF86XK_AudioMedia,         ,       }, /*  */
     { 0, XF86XK_AudioMicMute,       spawn,  SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") }, /* mute microphone in pulse audio` */
-    { 0, XF86XK_PowerOff,           spawn,  SHCMD("sysact") }, /*  */
+    { 0, XF86XK_PowerOff,           spawn,  SHCMD("powermenu") }, /* power menu through dmenu  */
     { 0, XF86XK_Calculator,         spawn,  SHCMD(TERMINAL " -e bc -l") }, /* BC = Best Calculator */
     { 0, XF86XK_Sleep,              spawn,  SHCMD("systemctl suspend-then-hibernate") }, /* sleep */
     { 0, XF86XK_WWW,                spawn,  SHCMD("$BROWSER") }, /* start browser defined in environment */
