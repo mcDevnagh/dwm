@@ -157,7 +157,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_F2,           ,               }, /*  */
     { MODKEY,           XK_F3,           spawn,          SHCMD(TERMINAL " -e htop") }, /* start htop */
   /*{ MODKEY|ShiftMask, XK_F3,           ,               }, /*  */
-  /*{ MODKEY,           XK_F4,           ,               }, /*  */
+    { MODKEY,           XK_F4,           spawn,          SHCMD(TERMINAL " -e pulsemixer") }, /* start audio tuner */
   /*{ MODKEY|ShiftMask, XK_F4,           ,               }, /*  */
   /*{ MODKEY,           XK_F5,           ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_F5,           ,               }, /*  */
