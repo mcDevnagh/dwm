@@ -26,6 +26,8 @@ static const char *colors[][3]      = {
     [SchemeSel]  = { col_gray4, col_blue,  col_mint  },
 };
 
+static const int statmonval = 0;
+
 /* commands */
 #define TERMINAL "st"
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
