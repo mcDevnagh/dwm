@@ -21,6 +21,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+static const int statmonval = 0;
+
 typedef struct {
 	const char *name;
 	const void *cmd;
