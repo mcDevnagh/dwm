@@ -138,7 +138,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_s,            ,               }, /*  */
     { MODKEY,           XK_t,            setlayout,      {.v = &layouts[0]} }, /* tile layout */
   /*{ MODKEY|ShiftMask, XK_t,            ,               }, /*  */
-  /*{ MODKEY,           XK_u,            ,               }, /*  */
+    { MODKEY,           XK_u,            spawn,          SHCMD("dmenuunicode") }, /* Select an emoji/unicode char from dmenu */
   /*{ MODKEY|ShiftMask, XK_u,            ,               }, /*  */
   /*{ MODKEY,           XK_v,            ,               }, /*  */
   /*{ MODKEY,           XK_v,            spawn,          SHCMD("xdotool type --clearmodifiers --delay 0 \"$(xclip -sel c -o)\"")}, /*  */
