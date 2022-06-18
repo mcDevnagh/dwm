@@ -2728,6 +2728,8 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
+	Arg dwmblocks = SHCMD("dwmblocks");
+	spawn(&dwmblocks);
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
