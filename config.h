@@ -91,7 +91,7 @@ static const Layout layouts[] = {
 #include "shiftview.c"
 
 static Key keys[] = {
-    /* modifier         key              function          argument */
+    /* modifier         key              function        argument */
     { MODKEY,           XK_Return,       spawn,          {.v = termcmd } }, /* spawn terminal */
     { MODKEY|ShiftMask, XK_Return,       togglescratch,  {.ui = 0} }, /* toggle scratchpad */
 	{ MODKEY,			XK_space,        zoom,           {0} }, /* switch master */
@@ -107,7 +107,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_d,            ,               }, /*  */
   /*{ MODKEY,           XK_e,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_e,            ,               }, /*  */
-    { MODKEY,           XK_f,            togglefullscr,  {0} }, /* toggle actual fullscreen of targeted client */
+  /*{ MODKEY,           XK_f,            ,               }, /*  */
     { MODKEY|ShiftMask, XK_f,            setlayout,      {.v = &layouts[1]} }, /* floating layout (aka normie mode) */
   /*{ MODKEY,           XK_g,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_g,            ,               }, /*  */
