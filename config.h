@@ -92,143 +92,147 @@ static const Layout layouts[] = {
 #include "shiftview.c"
 
 static Key keys[] = {
-	/* modifier		 		key					function		argument */
-    { MODKEY,				XK_Return,			spawn,			{.v = termcmd } },										/* spawn terminal */
-	{ MODKEY|ShiftMask, 	XK_Return,			togglescratch,	{.ui = 0} },											/* toggle scratchpad */
-	{ MODKEY,				XK_space,			zoom,			{0} },													/* switch master */
-	{ MODKEY|ShiftMask, 	XK_space,			togglefloating, {0} },													/* make target client floating */
-	/*{ MODKEY,				XK_a,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_a,				,				},														/*	*/
-	{ MODKEY,				XK_b,				spawn,			SHCMD(TERMINAL " -e lf") },								/* file Browser lf */
-	{ MODKEY|ShiftMask,		XK_b,				setlayout,		{.v = &layouts[3]} },									/* vertical stack */
-    /*{ MODKEY,				XK_c,				,				},														/*	*/
-	/*{ MODKEY,				XK_c,				spawn,			SHCMD("xsel | xclip -sel c") },							/* Copy (put selection into clipboard) */
-	/*{ MODKEY|ShiftMask,	XK_c,				,				},														/*	*/
-	{ MODKEY,				XK_d,				spawn,			{.v = dmenucmd } },										/* access dmenu */
-	/*{ MODKEY|ShiftMask,	XK_d,				,				},														/*	*/
-    /*{ MODKEY,				XK_e,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_e,				,				},														/*	*/
-	/*{ MODKEY,				XK_f,				,				},														/*	*/
-	{ MODKEY|ShiftMask,		XK_f,				setlayout,		{.v = &layouts[1]} },									/* floating layout (aka normie mode) */
-	/*{ MODKEY,				XK_g,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_g,				,				},														/*	*/
-	{ MODKEY,				XK_h,				shiftview,		{.i = -1} },											/* change to the tag to the left */
-	{ MODKEY|ShiftMask,		XK_h,				shifttag,		{.i = -1} },											/* move the selected client one tag to the left */
-    { MODKEY,				XK_i,				incnmaster,		{.i = -1 } },											/* decrease the number of masters */
-	{ MODKEY|ShiftMask,		XK_i,				incnmaster,		{.i = +1 } },											/* increase the number of masters */
-	{ MODKEY,				XK_j,				focusstack,		{.i = +1 } },											/* cycle to next client */
-	{ MODKEY|ShiftMask,		XK_j,				pushdown,		{0} },													/* push current client down the stack */
-	{ MODKEY,				XK_k,				focusstack,		{.i = -1 } },											/* cycle to previous client	*/
-    { MODKEY|ShiftMask,		XK_k,				pushup,		 	{0} },													/* push current client up the stack */
-	{ MODKEY,				XK_l,				shiftview,		{.i = +1} },											/* change to the tag to the right */
-    { MODKEY|ShiftMask,		XK_l,				shifttag,		{.i = +1} },											/* move the selected client one tag to the right */
-	/*{ MODKEY,				XK_m,				togglescratch,	{.ui = 2} },											/*	*/
-    { MODKEY|ShiftMask,		XK_m,				setlayout,		{.v = &layouts[2]} },									/* monocle layout */
-	{ MODKEY,				XK_n,				spawn,			SHCMD(TERMINAL " -e newsboat") },						/* start my RSS reader */
-	/*{ MODKEY|ShiftMask,	XK_n,				,				},														/*	*/
-	/*{ MODKEY,				XK_o,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_o,				,				},														/*	*/
-	/*{ MODKEY,				XK_p,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_p,				,				},														/*	*/
-	{ MODKEY,				XK_q,				killclient,		{0} },													/* close current client */
-    { MODKEY|ShiftMask,		XK_q,				spawn,			SHCMD("powermenu") },									/* power menu through dmenu */
-	/*{ MODKEY,				XK_r,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_r,				,				},														/*	*/
-	{ MODKEY,				XK_s,				togglesticky,	{0} },													/* toggle sticky (sticky means client is on all tags) */
-	/*{ MODKEY|ShiftMask,	XK_s,				,				},														/*	*/
-	{ MODKEY,				XK_t,				setlayout,		{.v = &layouts[0]} },									/* tile layout */
-	/*{ MODKEY|ShiftMask,	XK_t,				,				},														/*	*/
-	{ MODKEY,				XK_u,				spawn,			SHCMD("dmenuunicode") },								/* Select an emoji/unicode char from dmenu */
-	/*{ MODKEY|ShiftMask,	XK_u,				,				},														/*	*/
-	/*{ MODKEY,				XK_v,				,				},														/*	*/
-	/*{ MODKEY,				XK_v,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_v,				,				},														/*  */
-	{ MODKEY,				XK_w,				spawn,			SHCMD("$BROWSER") },									/* start browser defined in environment */
-	{ MODKEY|ShiftMask,		XK_w,				spawn,			SHCMD(TERMINAL " -e sudo nmtui") },						/* start network manager */
-	/*{ MODKEY,				XK_x,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_x,				,				},														/*	*/
-	/*{ MODKEY,				XK_y,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_y,				,				},														/*	*/
-	/*{ MODKEY,				XK_z,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_z,				,				},														/*	*/
-	/*{ MODKEY,				XK_grave,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_grave,			,				},														/*	*/
-	{ MODKEY,				XK_Tab,				view,			{0} },													/* go to last tag */
-	{ MODKEY|ShiftMask,		XK_Tab,				swapfocus,		{0} },													/* go to last client */
-	/*{ MODKEY,				XK_Escape,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Escape,			,				},														/*	*/
-	/*{ MODKEY,				XK_F1,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F1,				,				},														/*	*/
-	/*{ MODKEY,				XK_F2,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F2,				,				},														/*	*/
-	{ MODKEY,				XK_F3,				spawn,			SHCMD(TERMINAL " -e htop") },							/* start htop */
-	/*{ MODKEY|ShiftMask,	XK_F3,				,				},														/*	*/
-	{ MODKEY,				XK_F4,				spawn,			SHCMD(TERMINAL " -e pulsemixer") },						/* start audio tuner */
-	/*{ MODKEY|ShiftMask,	XK_F4,				,				},														/*	*/
-	/*{ MODKEY,				XK_F5,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F5,				,				},														/*	*/
-	/*{ MODKEY,				XK_F6,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F6,				,				},														/*	*/
-	/*{ MODKEY,				XK_F7,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F7,				,				},														/*	*/
-	/*{ MODKEY,				XK_F8,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F8,				,				},														/*	*/
-	/*{ MODKEY,				XK_F9,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F9,				,				},														/*	*/
-	/*{ MODKEY,				XK_F10,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F10,				,				},														/*	*/
-	/*{ MODKEY,				XK_F11,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F11,				,				},														/*	*/
-	/*{ MODKEY,				XK_F12,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_F12,				,				},														/*	*/
-	{ MODKEY,				XK_Print,			spawn,			SHCMD("maim pic-full-$(date '+%y%m%d-%H%M%S').png") },	/* screenshot whole screen */
-	{ MODKEY|ShiftMask,		XK_Print,			spawn,			SHCMD("maimpick") },									/* screenshot selector */
-	/*{ MODKEY,				XK_Scroll_Lock,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Scroll_Lock,		,				},														/*	*/
-	/*{ MODKEY,				XK_Pause,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Pause,			,				},														/*	*/
-	/*{ MODKEY,				XK_Insert,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Insert,			,				},														/*	*/
-	/*{ MODKEY,				XK_Delete,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Delete,			,				},														/*	*/
-	/*{ MODKEY,				XK_Home,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Home,			,				},														/*	*/
-	/*{ MODKEY,				XK_End,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_End,				,				},														/*	*/
-	/*{ MODKEY,				XK_Page_Up,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Page_Up,			,				},														/*	*/
-	/*{ MODKEY,				XK_Page_Down,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Page_Down,		,				},														/*	*/
-	/*{ MODKEY,				XK_minus,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_minus,			,				},														/*	*/
-	/*{ MODKEY,				XK_equal,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_equal,			,				},														/*	*/
-	/*{ MODKEY,				XK_BackSpace,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_BackSpace,		,				},														/*	*/
-	/*{ MODKEY,				XK_bracketleft,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_bracketleft,		,				},														/*	*/
-	/*{ MODKEY,				XK_bracketright,	,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_bracketright,	,				},														/*	*/
-	/*{ MODKEY,				XK_backslash,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_backslash,		,				},														/*	*/
-	{ MODKEY,				XK_semicolon,		setmfact,		{.f = -0.05} },											/* decrease width of master client */
-	{ MODKEY|ShiftMask,		XK_semicolon,		setmfact,		{.f = +0.05} },											/* increase width of master client */
-	/*{ MODKEY,				XK_apostrophe,		,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_apostrophe,		,				},														/*	*/
-	/*{ MODKEY,				XK_comma,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_comma,			,				},														/*	*/
-	/*{ MODKEY,				XK_period,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_period,			,				},														/*	*/
-	/*{ MODKEY,				XK_slash,			,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_slash,			,				},														/*	*/
-	/*{ MODKEY,				XK_Up,				,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Up,				,				},														/*	*/
-	{ MODKEY,				XK_Left,			 focusmon,		{.i = -1 } },											/*	*/
-	{ MODKEY|ShiftMask,		XK_Left,			 tagmon,		{.i = -1 } },											/*	*/
-	/*{ MODKEY,				XK_Down,			 ,				},														/*	*/
-	/*{ MODKEY|ShiftMask,	XK_Down,			 ,				},														/*	*/
-	{ MODKEY,				XK_Right,			focusmon,		{.i = +1 } },											/*	*/
-	{ MODKEY|ShiftMask,		XK_Right,			tagmon,			{.i = +1 } },											/*	*/
+	/* modifier		 				key					function		argument */
+    { MODKEY,						XK_Return,			spawn,			{.v = termcmd } },										/* spawn terminal */
+	{ MODKEY|ShiftMask, 			XK_Return,			togglescratch,	{.ui = 0} },											/* toggle scratchpad */
+	{ MODKEY,						XK_space,			zoom,			{0} },													/* switch master */
+	{ MODKEY|ShiftMask, 			XK_space,			togglefloating, {0} },													/* make target client floating */
+	/*{ MODKEY,						XK_a,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_a,				,				},														/*	*/
+	{ MODKEY,						XK_b,				spawn,			SHCMD(TERMINAL " -e lf") },								/* file Browser lf */
+	{ MODKEY|ShiftMask,				XK_b,				setlayout,		{.v = &layouts[3]} },									/* vertical stack */
+    /*{ MODKEY,						XK_c,				,				},														/*	*/
+	/*{ MODKEY,						XK_c,				spawn,			SHCMD("xsel | xclip -sel c") },							/* Copy (put selection into clipboard) */
+	/*{ MODKEY|ShiftMask,			XK_c,				,				},														/*	*/
+	{ MODKEY,						XK_d,				spawn,			{.v = dmenucmd } },										/* access dmenu */
+	/*{ MODKEY|ShiftMask,			XK_d,				,				},														/*	*/
+    /*{ MODKEY,						XK_e,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_e,				,				},														/*	*/
+	/*{ MODKEY,						XK_f,				,				},														/*	*/
+	{ MODKEY|ShiftMask,				XK_f,				setlayout,		{.v = &layouts[1]} },									/* floating layout (aka normie mode) */
+	/*{ MODKEY,						XK_g,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_g,				,				},														/*	*/
+	{ MODKEY,						XK_h,				shiftview,		{.i = -1} },											/* change to the tag to the left */
+	{ MODKEY|ShiftMask,				XK_h,				shifttag,		{.i = -1} },											/* move the selected client one tag to the left */
+	{ MODKEY|ControlMask,			XK_h,				focusmon,		{.i = -1} },											/* change to the left monitor */
+	{ MODKEY|ControlMask|ShiftMask,	XK_h,				tagmon,			{.i = -1} },											/* move the selected client to the left monitor */
+    { MODKEY,						XK_i,				incnmaster,		{.i = -1 } },											/* decrease the number of masters */
+	{ MODKEY|ShiftMask,				XK_i,				incnmaster,		{.i = +1 } },											/* increase the number of masters */
+	{ MODKEY,						XK_j,				focusstack,		{.i = +1 } },											/* cycle to next client */
+	{ MODKEY|ShiftMask,				XK_j,				pushdown,		{0} },													/* push current client down the stack */
+	{ MODKEY,						XK_k,				focusstack,		{.i = -1 } },											/* cycle to previous client	*/
+    { MODKEY|ShiftMask,				XK_k,				pushup,		 	{0} },													/* push current client up the stack */
+	{ MODKEY,						XK_l,				shiftview,		{.i = +1} },											/* change to the tag to the right */
+    { MODKEY|ShiftMask,				XK_l,				shifttag,		{.i = +1} },											/* move the selected client one tag to the right */
+	{ MODKEY|ControlMask,			XK_l,				focusmon,		{.i = +1} },											/* change to the right monitor */
+	{ MODKEY|ControlMask|ShiftMask,	XK_l,				tagmon,			{.i = +1} },											/* move the selected client to the right monitor */
+	/*{ MODKEY,						XK_m,				togglescratch,	{.ui = 2} },											/*	*/
+    { MODKEY|ShiftMask,				XK_m,				setlayout,		{.v = &layouts[2]} },									/* monocle layout */
+	{ MODKEY,						XK_n,				spawn,			SHCMD(TERMINAL " -e newsboat") },						/* start my RSS reader */
+	/*{ MODKEY|ShiftMask,			XK_n,				,				},														/*	*/
+	/*{ MODKEY,						XK_o,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_o,				,				},														/*	*/
+	/*{ MODKEY,						XK_p,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_p,				,				},														/*	*/
+	{ MODKEY,						XK_q,				killclient,		{0} },													/* close current client */
+    { MODKEY|ShiftMask,				XK_q,				spawn,			SHCMD("powermenu") },									/* power menu through dmenu */
+	/*{ MODKEY,						XK_r,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_r,				,				},														/*	*/
+	{ MODKEY,						XK_s,				togglesticky,	{0} },													/* toggle sticky (sticky means client is on all tags) */
+	/*{ MODKEY|ShiftMask,			XK_s,				,				},														/*	*/
+	{ MODKEY,						XK_t,				setlayout,		{.v = &layouts[0]} },									/* tile layout */
+	/*{ MODKEY|ShiftMask,			XK_t,				,				},														/*	*/
+	{ MODKEY,						XK_u,				spawn,			SHCMD("dmenuunicode") },								/* Select an emoji/unicode char from dmenu */
+	/*{ MODKEY|ShiftMask,			XK_u,				,				},														/*	*/
+	/*{ MODKEY,						XK_v,				,				},														/*	*/
+	/*{ MODKEY,						XK_v,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_v,				,				},														/*  */
+	{ MODKEY,						XK_w,				spawn,			SHCMD("$BROWSER") },									/* start browser defined in environment */
+	{ MODKEY|ShiftMask,				XK_w,				spawn,			SHCMD(TERMINAL " -e sudo nmtui") },						/* start network manager */
+	/*{ MODKEY,						XK_x,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_x,				,				},														/*	*/
+	/*{ MODKEY,						XK_y,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_y,				,				},														/*	*/
+	/*{ MODKEY,						XK_z,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_z,				,				},														/*	*/
+	/*{ MODKEY,						XK_grave,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_grave,			,				},														/*	*/
+	{ MODKEY,						XK_Tab,				view,			{0} },													/* go to last tag */
+	{ MODKEY|ShiftMask,				XK_Tab,				swapfocus,		{0} },													/* go to last client */
+	/*{ MODKEY,						XK_Escape,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Escape,			,				},														/*	*/
+	/*{ MODKEY,						XK_F1,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F1,				,				},														/*	*/
+	/*{ MODKEY,						XK_F2,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F2,				,				},														/*	*/
+	{ MODKEY,						XK_F3,				spawn,			SHCMD(TERMINAL " -e htop") },							/* start htop */
+	/*{ MODKEY|ShiftMask,			XK_F3,				,				},														/*	*/
+	{ MODKEY,						XK_F4,				spawn,			SHCMD(TERMINAL " -e pulsemixer") },						/* start audio tuner */
+	/*{ MODKEY|ShiftMask,			XK_F4,				,				},														/*	*/
+	/*{ MODKEY,						XK_F5,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F5,				,				},														/*	*/
+	/*{ MODKEY,						XK_F6,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F6,				,				},														/*	*/
+	/*{ MODKEY,						XK_F7,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F7,				,				},														/*	*/
+	/*{ MODKEY,						XK_F8,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F8,				,				},														/*	*/
+	/*{ MODKEY,						XK_F9,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F9,				,				},														/*	*/
+	/*{ MODKEY,						XK_F10,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F10,				,				},														/*	*/
+	/*{ MODKEY,						XK_F11,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F11,				,				},														/*	*/
+	/*{ MODKEY,						XK_F12,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_F12,				,				},														/*	*/
+	{ MODKEY,						XK_Print,			spawn,			SHCMD("maim pic-full-$(date '+%y%m%d-%H%M%S').png") },	/* screenshot whole screen */
+	{ MODKEY|ShiftMask,				XK_Print,			spawn,			SHCMD("maimpick") },									/* screenshot selector */
+	/*{ MODKEY,						XK_Scroll_Lock,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Scroll_Lock,		,				},														/*	*/
+	/*{ MODKEY,						XK_Pause,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Pause,			,				},														/*	*/
+	/*{ MODKEY,						XK_Insert,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Insert,			,				},														/*	*/
+	/*{ MODKEY,						XK_Delete,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Delete,			,				},														/*	*/
+	/*{ MODKEY,						XK_Home,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Home,			,				},														/*	*/
+	/*{ MODKEY,						XK_End,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_End,				,				},														/*	*/
+	/*{ MODKEY,						XK_Page_Up,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Page_Up,			,				},														/*	*/
+	/*{ MODKEY,						XK_Page_Down,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Page_Down,		,				},														/*	*/
+	/*{ MODKEY,						XK_minus,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_minus,			,				},														/*	*/
+	/*{ MODKEY,						XK_equal,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_equal,			,				},														/*	*/
+	/*{ MODKEY,						XK_BackSpace,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_BackSpace,		,				},														/*	*/
+	/*{ MODKEY,						XK_bracketleft,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_bracketleft,		,				},														/*	*/
+	/*{ MODKEY,						XK_bracketright,	,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_bracketright,	,				},														/*	*/
+	/*{ MODKEY,						XK_backslash,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_backslash,		,				},														/*	*/
+	{ MODKEY,						XK_semicolon,		setmfact,		{.f = -0.05} },											/* decrease width of master client */
+	{ MODKEY|ShiftMask,				XK_semicolon,		setmfact,		{.f = +0.05} },											/* increase width of master client */
+	/*{ MODKEY,						XK_apostrophe,		,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_apostrophe,		,				},														/*	*/
+	/*{ MODKEY,						XK_comma,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_comma,			,				},														/*	*/
+	/*{ MODKEY,						XK_period,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_period,			,				},														/*	*/
+	/*{ MODKEY,						XK_slash,			,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_slash,			,				},														/*	*/
+	/*{ MODKEY,						XK_Up,				,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Up,				,				},														/*	*/
+	{ MODKEY,						XK_Left,			 focusmon,		{.i = -1 } },											/*	*/
+	{ MODKEY|ShiftMask,				XK_Left,			 tagmon,		{.i = -1 } },											/*	*/
+	/*{ MODKEY,						XK_Down,			 ,				},														/*	*/
+	/*{ MODKEY|ShiftMask,			XK_Down,			 ,				},														/*	*/
+	{ MODKEY,						XK_Right,			focusmon,		{.i = +1 } },											/*	*/
+	{ MODKEY|ShiftMask,				XK_Right,			tagmon,			{.i = +1 } },											/*	*/
 
 	{ 0,	XF86XK_AudioMute,			spawn,	SHCMD("audio-ctl mute") },										/* mute script */
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,	SHCMD("audio-ctl 5") },											/* increase volume script */
