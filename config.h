@@ -142,8 +142,8 @@ static Key keys[] = {
 	/*{ MODKEY|ShiftMask,			XK_s,				,				},														/*	*/
 	{ MODKEY,						XK_t,				setlayout,		{.v = &layouts[0]} },									/* tile layout */
 	/*{ MODKEY|ShiftMask,			XK_t,				,				},														/*	*/
-	{ MODKEY,						XK_u,				spawn,			SHCMD("dmenuunicode") },								/* Select an emoji/unicode char from dmenu */
-	/*{ MODKEY|ShiftMask,			XK_u,				,				},														/*	*/
+	{ MODKEY,						XK_u,				spawn,			SHCMD("dmenuunicode doit") },								/* Type an emoji/unicode char from dmenu */
+	{ MODKEY|ShiftMask,				XK_u,				spawn,			SHCMD("dmenuunicode") },								/* Copy an emoji/unicode char from dmenu */
 	/*{ MODKEY,						XK_v,				,				},														/*	*/
 	/*{ MODKEY,						XK_v,				,				},														/*	*/
 	/*{ MODKEY|ShiftMask,			XK_v,				,				},														/*  */
