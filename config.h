@@ -65,6 +65,9 @@ static const Rule rules[] = {
 	/* Cringe Video Games */
 	{ "explorer.exe",			NULL,		NULL,			1,			1,			0,			 0,			 0 },
 	{ "Lutris",					NULL,		NULL,			1,			0,			0,			 0,			 0 },
+	{ "riotclientux.exe",		NULL,		NULL,			1,			1,			0,			 0,			 0 },
+	{ "riotclientservices.exe",	NULL,		NULL,			1,			1,			0,			 0,			 0 },
+	{ "leagueclient.exe",		NULL,		NULL,			1,			1,			0,			 0,			 0 },
 	{ "leagueclientux.exe",		NULL,		NULL,			1,			1,			0,			 0,			 0 },
 	{ "league of legends.exe",	NULL,		NULL,			1,			1,			0,			 0,			 0 },
 };
