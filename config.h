@@ -66,12 +66,14 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[M]",      monocle },    /* first entry is default */
-    { "[]=",      tile },
-    { "><>",      NULL },    /* no layout function means floating behavior */
+    { "[M]",      monocle }, 		/* everything stacked on top of eachother on the Z axis */
+    { "[]=",      tile },    		/* tiling with a master and slaves */
+    { "><>",      NULL },    		/* no layout function means floating behavior */
+    { "===",      bstackhoriz },    /* tiling with stacked on the Y axis */	
 };
 
 /* key definitions */
@@ -89,7 +91,7 @@ static const Layout layouts[] = {
 #include "shiftview.c"
 
 static Key keys[] = {
-    /* modifier         key              function          argument */
+    /* modifier         key              function        argument */
     { MODKEY,           XK_Return,       spawn,          {.v = termcmd } }, /* spawn terminal */
     { MODKEY|ShiftMask, XK_Return,       togglescratch,  {.ui = 0} }, /* toggle scratchpad */
 	{ MODKEY,			XK_space,        zoom,           {0} }, /* switch master */
@@ -97,7 +99,7 @@ static Key keys[] = {
   /*{ MODKEY,           XK_a,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_a,            ,               }, /*  */
     { MODKEY,           XK_b,            spawn,          SHCMD(TERMINAL " -e lf") }, /* file Browser lf */
-    { MODKEY|ShiftMask, XK_b,            togglescratch,  {.ui = 1} }, /* file Browser lf in a scratchpad */
+    { MODKEY|ShiftMask, XK_b,            setlayout,      {.v = &layouts[3]} }, /* vertical stack */
   /*{ MODKEY,           XK_c,            ,               }, /*  */
   /*{ MODKEY,           XK_c,            spawn,          SHCMD("xsel | xclip -sel c") }, /* Copy (put selection into clipboard) */
   /*{ MODKEY|ShiftMask, XK_c,            ,               }, /*  */
@@ -105,7 +107,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_d,            ,               }, /*  */
   /*{ MODKEY,           XK_e,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_e,            ,               }, /*  */
-    { MODKEY,           XK_f,            togglefullscr,  {0} }, /* toggle actual fullscreen of targeted client */
+  /*{ MODKEY,           XK_f,            ,               }, /*  */
     { MODKEY|ShiftMask, XK_f,            setlayout,      {.v = &layouts[2]} }, /* floating layout (aka normie mode) */
   /*{ MODKEY,           XK_g,            ,               }, /*  */
   /*{ MODKEY|ShiftMask, XK_g,            ,               }, /*  */
@@ -135,7 +137,7 @@ static Key keys[] = {
   /*{ MODKEY|ShiftMask, XK_s,            ,               }, /*  */
     { MODKEY,           XK_t,            setlayout,      {.v = &layouts[1]} }, /* tile layout */
   /*{ MODKEY|ShiftMask, XK_t,            ,               }, /*  */
-  /*{ MODKEY,           XK_u,            ,               }, /*  */
+    { MODKEY,           XK_u,            spawn,          SHCMD("dmenuunicode") }, /* Select an emoji/unicode char from dmenu */
   /*{ MODKEY|ShiftMask, XK_u,            ,               }, /*  */
   /*{ MODKEY,           XK_v,            ,               }, /*  */
   /*{ MODKEY,           XK_v,            spawn,          SHCMD("xdotool type --clearmodifiers --delay 0 \"$(xclip -sel c -o)\"")}, /*  */
