@@ -229,14 +229,14 @@ static Key keys[] = {
     { MODKEY,           XK_Right,        focusmon,       {.i = +1 } }, /*  */
     { MODKEY|ShiftMask, XK_Right,        tagmon,         {.i = +1 } }, /*  */
 
-    { 0, XF86XK_AudioMute,          spawn,  SHCMD("pamixer -t") }, /* mute pulse audio */
-    { 0, XF86XK_AudioRaiseVolume,   spawn,  SHCMD("pamixer --allow-boost -i 5") }, /* increase pulse audio volume */
-    { 0, XF86XK_AudioLowerVolume,   spawn,  SHCMD("pamixer --allow-boost -d 5") }, /* decrease pulse audio volume */
-  /*{ 0, XF86XK_AudioPrev,          ,       }, /*  */
-  /*{ 0, XF86XK_AudioNext,          ,       }, /*  */
-  /*{ 0, XF86XK_AudioPause,         ,       }, /*  */
-  /*{ 0, XF86XK_AudioPlay,          ,       }, /*  */
-  /*{ 0, XF86XK_AudioStop,          ,       }, /*  */
+	{ 0,	XF86XK_AudioMute,			spawn,	SHCMD("audio-ctl mute") },										/* mute script */
+	{ 0,	XF86XK_AudioRaiseVolume,	spawn,	SHCMD("audio-ctl 5") },											/* increase volume script */
+	{ 0,	XF86XK_AudioLowerVolume,	spawn,	SHCMD("audio-ctl -5") },										/* decrease volume script */
+	{ 0,	XF86XK_AudioPrev,			spawn,	SHCMD("audio-ctl previous") },									/* previous track script */
+	{ 0,	XF86XK_AudioNext,			spawn,	SHCMD("audio-ctl next") },										/* next track script */
+	{ 0,	XF86XK_AudioPause,			spawn,	SHCMD("audio-ctl pause") },										/* previous track script */
+	{ 0,	XF86XK_AudioPlay,			spawn,	SHCMD("audio-ctl play-pause") },								/* play-pause track script */
+	{ 0,	XF86XK_AudioStop,			spawn,	SHCMD("audio-ctl stop") },										/* stop track script */
   /*{ 0, XF86XK_AudioRewind,        ,       }, /*  */
   /*{ 0, XF86XK_AudioForward,       ,       }, /*  */
   /*{ 0, XF86XK_AudioMedia,         ,       }, /*  */
