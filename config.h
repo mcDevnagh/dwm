@@ -27,7 +27,7 @@ static const char *colors[][3]		= {
 };
 
 /* commands */
-#define TERMINAL "st"
+#define TERMINAL "alacritty"
 static char dmenumon[2]			= "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]	= { TERMINAL, NULL };
@@ -36,8 +36,8 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL};
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "lf", NULL};
 static Sp scratchpads[] = {
 	/* name	cmd	*/
 	{"spterm", spcmd1},
@@ -58,6 +58,7 @@ static const Rule rules[] = {
 	{ "librewolf",				NULL,		NULL,			0,			0,			0,			-1,			-1 },
 	{ "discord",				NULL,		NULL,			1,			0,			0,			-1,			 1 },
 	{ "st-256color",			NULL,		NULL,			0,			0,			1,			 0,			-1 },
+	{ "Alacritty",				NULL,		NULL,			0,			0,			1,			 0,			-1 },
     { NULL,						NULL,		"Event Tester", 0,			0,			0,			 1,			-1 }, /* xev */
 	{ NULL,						"spterm",	NULL,			SPTAG(0),	1,			1,			 0,			-1 },
 	{ NULL,						"spfm",		NULL,			SPTAG(1),	1,			1,			 0,			-1 },
