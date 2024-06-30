@@ -197,6 +197,7 @@ static long getstate(Window w);
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
+static void horizontal_tile(Monitor *m);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
@@ -1134,6 +1135,56 @@ grabkeys(void)
 				for (j = 0; j < LENGTH(modifiers); j++)
 					XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
 						True, GrabModeAsync, GrabModeAsync);
+	}
+}
+
+void
+horizontal_tile(Monitor *m)
+{
+	Client *c;
+	unsigned int i, n, w, mw, mx, sx;
+	int gap;
+
+	/* Count windows */
+	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+
+	mw = m->ww;
+	if (n > m->nmaster)
+		mw = m->nmaster ? mw * m->mfact : 0;
+
+	if (m->pertag->drawwithgaps[m->pertag->curtag]) {
+		gap = m->pertag->gappx[m->pertag->curtag];
+		mw -= gap;
+
+		for (i = sx = 0, mx = gap, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+			if (i < m->nmaster) {
+				if (n == 1)
+					resize(c, m->wx + gap, m->wy + gap, m->ww - c->bw - c->bw - gap - gap, m->wh - c->bw - c->bw - gap - gap, False);
+				else {
+					w = (mw - mx) / (MIN(n, m->nmaster) - i);
+					resize(c, m->wx + mx, m->wy + gap, w - c->bw - gap, m->wh - c->bw - c->bw - gap - gap, False);
+				}
+				mx += c->w + c->bw + gap;
+			} else {
+				w = (m->ww - mw - sx) / (n - i);
+				resize(c, mw + m->wx + sx, m->wy + gap, w - c->bw - gap, m->wh - c->bw - c->bw - gap - gap, False);
+				sx += c->w + c->bw + gap;
+			}
+	} else {
+		for (i = mx = sx = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+			if (i < m->nmaster) {
+				if (n == 1)
+					resize(c, m->wx, m->wy, m->ww - c->bw - c->bw, m->wh - c->bw - c->bw, False);
+				else {
+					w = mw / MAX(1, MIN(n, m->nmaster));
+					resize(c, m->wx + mx, m->wy, w - c->bw - c->bw, m->wh - c->bw - c->bw, False);
+				}
+				mx += c->w + c->bw;
+			} else {
+				w = (m->ww - mw) / MAX(1, (n - MAX(0, m->nmaster)));
+				resize(c, mw + m->wx + sx, m->wy, w - c->bw - c->bw, m->wh - c->bw - c->bw, False);
+				sx += c->w + c->bw;
+			}
 	}
 }
 

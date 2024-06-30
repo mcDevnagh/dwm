@@ -85,6 +85,7 @@ static const Layout layouts[] = {
 	{ "><>",		NULL },			/* no layout function means floating behavior */
 	{ "[M]",		monocle }, 		/* everything stacked on top of eachother on the Z axis */
 	{ "===",		bstackhoriz },	/* tiling with stacked on the Y axis */	
+	{ "[]I",		horizontal_tile },	/* tiling with a master and slaves on the Y axis */	
 };
 
 /* key definitions */
@@ -151,7 +152,7 @@ static Key keys[] = {
 	{ MODKEY,						XK_s,				togglesticky,	{0} },													/* toggle sticky (sticky means client is on all tags) */
 	/*{ MODKEY|ShiftMask,			XK_s,				,				},														/*	*/
 	{ MODKEY,						XK_t,				setlayout,		{.v = &layouts[0]} },									/* tile layout */
-	/*{ MODKEY|ShiftMask,			XK_t,				,				},														/*	*/
+	{ MODKEY|ShiftMask,				XK_t,				setlayout,		{.v = &layouts[4]} },									/* horizontal tile layout */
 	{ MODKEY,						XK_u,				spawn,			SHCMD("dmenuunicode doit") },								/* Type an emoji/unicode char from dmenu */
 	{ MODKEY|ShiftMask,				XK_u,				spawn,			SHCMD("dmenuunicode") },								/* Copy an emoji/unicode char from dmenu */
 	/*{ MODKEY,						XK_v,				,				},														/*	*/
