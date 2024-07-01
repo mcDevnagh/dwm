@@ -1161,9 +1161,7 @@ horizontal_tile(Monitor *m)
 
 	if (m->pertag->drawwithgaps[m->pertag->curtag]) {
 		gap = m->pertag->gappx[m->pertag->curtag];
-		mw -= gap;
-
-		for (i = sx = 0, mx = gap, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		for (i = 0, mx = sx = gap, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 			if (i < m->nmaster) {
 				if (n == 1)
 					resize(c, m->wx + gap, m->wy + gap, m->ww - c->bw - c->bw - gap - gap, m->wh - c->bw - c->bw - gap - gap, False);
@@ -1172,6 +1170,7 @@ horizontal_tile(Monitor *m)
 					resize(c, m->wx + mx, m->wy + gap, w - c->bw - gap, m->wh - c->bw - c->bw - gap - gap, False);
 				}
 				mx += c->w + c->bw + gap;
+				sx = 0;
 			} else {
 				w = (m->ww - mw - sx) / (n - i);
 				resize(c, mw + m->wx + sx, m->wy + gap, w - c->bw - gap, m->wh - c->bw - c->bw - gap - gap, False);
