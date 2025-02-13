@@ -119,7 +119,7 @@ static Key keys[] = {
 	/*{ MODKEY|ShiftMask,			XK_d,				,				},														/*	*/
     /*{ MODKEY,						XK_e,				,				},														/*	*/
 	/*{ MODKEY|ShiftMask,			XK_e,				,				},														/*	*/
-	/*{ MODKEY,						XK_f,				,				},														/*	*/
+	{ MODKEY,						XK_f,				togglefullscr,	{0} },													/* fullscreen */
 	{ MODKEY|ShiftMask,				XK_f,				setlayout,		{.v = &layouts[1]} },									/* floating layout (aka normie mode) */
 	/*{ MODKEY,						XK_g,				,				},														/*	*/
 	/*{ MODKEY|ShiftMask,			XK_g,				,				},														/*	*/
