@@ -27,7 +27,7 @@ static const char *colors[][3]		= {
 };
 
 /* commands */
-#define TERMINAL "alacritty"
+#define TERMINAL "ghostty"
 static char dmenumon[2]			= "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]	= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]	= { TERMINAL, NULL };
@@ -59,6 +59,7 @@ static const Rule rules[] = {
 	{ "discord",				NULL,		NULL,			1,			0,			0,			-1,			 1 },
 	{ "st-256color",			NULL,		NULL,			0,			0,			1,			 0,			-1 },
 	{ "Alacritty",				NULL,		NULL,			0,			0,			1,			 0,			-1 },
+	{ "ghostty",				NULL,		NULL,			0,			0,			1,			 0,			-1 },
     { NULL,						NULL,		"Event Tester", 0,			0,			0,			 1,			-1 }, /* xev */
 	{ NULL,						"spterm",	NULL,			SPTAG(0),	1,			1,			 0,			-1 },
 	{ NULL,						"spfm",		NULL,			SPTAG(1),	1,			1,			 0,			-1 },
